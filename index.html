@@ -24,6 +24,7 @@
   --r:18px;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{background:var(--night);color:var(--on-night)}
 body{font-family:var(--f-body);font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
@@ -695,7 +696,7 @@ function openMap(){const p=me();if(!p){openProfiles();return}
     if(open&&!st.done&&!nextMarked){b.classList.add('next');nextMarked=true}
     b.disabled=!open;const n=questions.filter(q=>L.cat==='all'||q.cat===L.cat).length;
     const nodeInner=!open?'<svg><use href="#lock"/></svg>':L.final?`<svg style="color:${gemOf(p)}"><use href="#crown"/></svg>`:L.gate;
-    const lockMsg=L.final?'נפתח אחרי חמשת השערים':`נפתח אחרי שער ${LEVELS[i-1].gate}׳`;
+    const lockMsg=L.final?'נפתח אחרי חמשת השערים':i>0?`נפתח אחרי שער ${LEVELS[i-1].gate}׳`:'';
     b.innerHTML=`<span class="node">${nodeInner}</span><span class="sc"><span class="gate">${L.final?'השער האחרון · שער '+L.gate+'׳':'שער '+L.gate+'׳'}</span><h3>${L.title}</h3><p>${L.desc}</p>
       <span class="meta">${open?miniCrowns(st.stars||0):''}<span>${open?(st.done?`שיא: ${st.best} נקודות`:`${n} שאלות`):lockMsg}</span></span></span>`;
     b.setAttribute('aria-label',`שער ${L.gate}: ${L.title}${open?'':' (נעול)'}`);
@@ -811,4 +812,4 @@ if(me())openMap();else openProfiles();
 </script>
 
 </body>
-  </html>
+</html>
